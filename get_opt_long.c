@@ -109,14 +109,20 @@ my_putnbr(int file_descriptor, int nb)
 }
 
 /*
- * program kullanimini aciklayan fonksiyon.
+ * hatali veya eksik kullanim durumunda program kullanimini aciklayan fonksiyon.
  */
 void
-program_usage(int file_description, char *elf_name)
+program_usage(int file_description, char *program_name)
 {
-	my_putstr(file_description, "Usage: ");
-	my_putstr(file_description, elf_name);
-	my_putstr(file_description, "\n");
+	my_putstr(file_description, "Usage ");
+	my_putstr(file_description, program_name);
+	my_putstr(file_description, " [options]\n");
+	my_putstr(file_description, "Options:\n");
+	my_putstr(file_description, "  -a, --author         Display the author of this program.\n");
+	my_putstr(file_description, "  -V, --version        Display the version of this program.\n");
+	my_putstr(file_description, "  -n, --name           Display the full name of this program.\n");
+	my_putstr(file_description, "  --var                Debug of required_argument.\n");
+	my_putstr(file_description, "  -n, --help           Display this menu.\n");
 }
 
 // TODO
@@ -131,14 +137,15 @@ program_usage(int file_description, char *elf_name)
 int
 filter_arg(const char *s)
 {
-	return ((my_strlen(str) == 2) && (*str == '-'));
+	return ((my_strlen(s) == 2) && (*s == '-'));
 }
 
 int
 main(int argc, char **argv)
 {
 	int	opt;
-	int	optid;
+	int	opt_index;
+
 	/*
 	 * Array olusturdugumuz icin son argumani NULL olarak ayarliyoruz.
 	 */
@@ -146,8 +153,9 @@ main(int argc, char **argv)
 		{"author",  no_argument,       NULL, 'a'},
 		{"version", no_argument,       NULL, 'V'},
 		{"name",    no_argument,       NULL, 'n'},
-		{"var",     required_argument, NULL, 'r'},
-		{NULL,      0,                 NULL,  0}
+		{"var",     required_argument, NULL,  0 },
+		{"help",    no_argument      , NULL, 'h'},
+		{NULL,      0,                 NULL,  0 }
 	};
 /*
  * 	int getopt_long(
@@ -163,22 +171,19 @@ main(int argc, char **argv)
 	 */
 	opterr = 0;
 	while (1) {
-		optid = 0;
-		opt = getopt_long(argc, argv, "aVn012r:", (const struct option*)opts, &optid);
+		opt_index = 0;
+		opt = getopt_long(argc, argv, "0aVnr:h", (const struct option*)opts, &opt_index);
 
 		/*
 		 * getopt sonlandiginda -1 degeri dondurur.
 		 */
 		if (opt == -1) {
-			my_putstr(STDOUT, "son");
 			break ;
 		}
 
 		switch (opt) {
 			case 0:
-			case 1:
-			case 2:
-				my_putstr(STDOUT, opts[optid].name);
+				my_putstr(STDOUT, opts[opt_index].name);
 				my_putstr(STDOUT, "\n");
 				break ;
 			case 'a':
@@ -197,8 +202,17 @@ main(int argc, char **argv)
 				my_putstr(STDOUT, optarg);
 				my_putstr(STDOUT, "\n");
 				break ;
-			default :
+			case 'h':
 				program_usage(STDERR, argv[0]);
+				break ;
+			default :
+				my_putstr(STDERR, "Unknown option argument: ");
+				my_putstr(STDERR, "\"--");
+				my_putstr(STDERR, opts[opt_index].name);
+				my_putstr(STDERR, "\"\n");
+				my_putstr(STDERR, "More info with: \"");
+				my_putstr(STDERR, argv[0]);
+				my_putstr(STDERR, " -h\n");
 				break ;
 		}
 	}
