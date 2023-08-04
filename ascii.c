@@ -46,17 +46,16 @@ my_putnbr(int nb)
 }
 
 /*
- * Bir karakteri gosteren isaretcinin uzunlugu 1 ise 1, degil ise
- * 0 dondurur.
+ * '\0' ile sonlanan bir string ifadesindeki karakter sayisini dondurur.
+ * '\0' dahil degildir.
  */
-int
-my_strlen(char *str)
+size_t
+my_strlen(const char *str)
 {
-	int c = 1;
-	if (*(str + c) != '\0') {
-		return (0);
-	}
-	return (1);
+	size_t len = 0;
+	while (*(str + len++)) ;
+
+	return (--len);
 }
 
 /*
@@ -156,7 +155,7 @@ ascii_special(char *str)
 	} else if (my_strcmp(str, "DEL"))  {
 		return (127);
 	} else {
-		if (my_strlen(str)) {
+		if (my_strlen(str) == 1) {
 			return (str[0]);
 		}
 		return (-1);
@@ -180,7 +179,6 @@ ascii_routine(int ac, char **ap)
 		my_putchar(10);
 	}
 }
-
 
 int
 main(int argc, char **argv)
