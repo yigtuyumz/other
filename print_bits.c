@@ -5,8 +5,9 @@ my_putchar(char c)
 {
 	write(1, &c, 1);
 }
+
 /*
- * 0xFFFFFFFFFFFFFFFF
+ * maximum 0xFFFFFFFFFFFFFFFF
  */
 void
 print_bits(size_t val, short size)

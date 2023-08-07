@@ -1,3 +1,6 @@
+/*
+ * hayranlikla okudugum Quake oyun motorunda bulunan algoritma.
+ */
 float Q_rsqrt( float number )
 {
 	long i;

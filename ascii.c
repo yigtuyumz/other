@@ -53,9 +53,10 @@ size_t
 my_strlen(const char *str)
 {
 	size_t len = 0;
-	while (*(str + len++)) ;
-
-	return (--len);
+	while (*(str + len) != '\0') {
+		len++;
+	}
+	return (len);
 }
 
 /*
@@ -67,7 +68,7 @@ my_strcmp(char *a, char *b)
 {
 	int i = 0;
 	while (*(a + i) == * (b + i) && \
-		(*(b + i) != '\0' || *(a + i) != '\0')) {
+			(*(b + i) != '\0' || *(a + i) != '\0')) {
 		i++;
 	}
 
