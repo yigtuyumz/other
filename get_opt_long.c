@@ -126,7 +126,7 @@ program_usage(int file_description, char *program_name)
 	my_putstr(file_description, "  -V, --version        Display the version of this program.\n");
 	my_putstr(file_description, "  -n, --name           Display the full name of this program.\n");
 	my_putstr(file_description, "  --var                Debug of required_argument.\n");
-	my_putstr(file_description, "  -n, --help           Display this menu.\n");
+	my_putstr(file_description, "  -h, --help           Display this menu.\n");
 }
 
 // TODO
@@ -216,7 +216,7 @@ main(int argc, char **argv)
 				my_putstr(STDERR, "\"\n");
 				my_putstr(STDERR, "More info with: \"");
 				my_putstr(STDERR, argv[0]);
-				my_putstr(STDERR, " -h\n");
+				my_putstr(STDERR, " -h\"\n");
 				break ;
 		}
 	}

@@ -1,5 +1,5 @@
 # count comes from -v arg
-# if count < 0 -> infinite loop
+# if count is less than zero -> infinite loop
 
 BEGIN {
 	if (length(count) == 0) {
@@ -29,10 +29,9 @@ BEGIN {
 		num1 = int(rand() * 90 + 10);    # sadece iki basamakli sayilar 10 - 99
 		print num1;
 	}
+
 	ORS = "\n"
 	num1 = int(rand() * 90 + 10);    # sadece iki basamakli sayilar 10 - 99
 	print num1;
-
-
 }
 

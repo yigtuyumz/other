@@ -60,8 +60,8 @@ my_strlen(const char *str)
 }
 
 /*
- * Eger a ve b isaretcileri ile gosterilen stringin icerisindekiler
- * birbirlerine esit ise, 1 degil ise 0 dondurur.
+ * Eger a ve b isaretcileri ile gosterilen stringin icerisindeki
+ * her bir karakter birbirine esit ise, 1 degil ise 0 dondurur.
  */
 int
 my_strcmp(char *a, char *b)
