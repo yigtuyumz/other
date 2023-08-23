@@ -47,16 +47,11 @@ my_strdup(const char *str)
 char *
 my_strndup(const char *str, size_t n)
 {
-	/*
-	 * kullanici negatif bir deger girdiginde size_t maximum degerine kayar.
-	 * bunu asagidaki if kosuluyla denetleyebiliriz.
-	 */
-	if (n >= ((unsigned long) 1 << 32) - 1) {
-		/*
-		 * n = 4294967295
-		 */
-		n = ((unsigned long) 1 << 32) - 1;
+/*
+	if ((((int) n) < 0) || (n > ((size_t) 0xFFFFFFFF))) {
+		n = 0xFFFFFFFF;
 	}
+*/
 	if (n == 0) {
 		return (NULL);
 	}
