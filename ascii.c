@@ -67,12 +67,12 @@ int
 my_strcmp(char *a, char *b)
 {
 	int i = 0;
-	while (*(a + i) == * (b + i) && \
+	while (*(a + i) == *(b + i) && \
 			(*(b + i) != '\0' || *(a + i) != '\0')) {
 		i++;
 	}
 
-	if (*(a + i) == '\0') {
+	if (*(a + i) == *(b + i)) {
 		return (1);
 	}
 	return (0);
@@ -89,71 +89,71 @@ ascii_special(char *str)
 {
 	if (my_strcmp(str, "NUL") || my_strcmp(str, "\\0")) {
 		return (0);
-	} else if (my_strcmp(str, "SOH"))  {
+	} else if (my_strcmp(str, "SOH")) {
 		return (1);
-	} else if (my_strcmp(str, "STX"))  {
+	} else if (my_strcmp(str, "STX")) {
 		return (2);
-	} else if (my_strcmp(str, "ETX"))  {
+	} else if (my_strcmp(str, "ETX")) {
 		return (3);
-	} else if (my_strcmp(str, "EOT"))  {
+	} else if (my_strcmp(str, "EOT")) {
 		return (4);
-	} else if (my_strcmp(str, "ENQ"))  {
+	} else if (my_strcmp(str, "ENQ")) {
 		return (5);
-	} else if (my_strcmp(str, "ACK"))  {
+	} else if (my_strcmp(str, "ACK")) {
 		return (6);
-	} else if (my_strcmp(str, "BEL") || my_strcmp(str, "\\a"))  {
+	} else if (my_strcmp(str, "BEL") || my_strcmp(str, "\\a")) {
 		return (7);
-	} else if (my_strcmp(str, "BS") || my_strcmp(str, "\\b"))  {
+	} else if (my_strcmp(str, "BS") || my_strcmp(str, "\\b")) {
 		return (8);
-	} else if (my_strcmp(str, "HT") || my_strcmp(str, "\\t"))  {
+	} else if (my_strcmp(str, "HT") || my_strcmp(str, "\\t")) {
 		return (9);
-	} else if (my_strcmp(str, "LF") || my_strcmp(str, "\\n"))  {
+	} else if (my_strcmp(str, "LF") || my_strcmp(str, "\\n")) {
 		return (10);
-	} else if (my_strcmp(str, "VT") || my_strcmp(str, "\\v"))  {
+	} else if (my_strcmp(str, "VT") || my_strcmp(str, "\\v")) {
 		return (11);
-	} else if (my_strcmp(str, "FF") || my_strcmp(str, "\\f"))  {
+	} else if (my_strcmp(str, "FF") || my_strcmp(str, "\\f")) {
 		return (12);
-	} else if (my_strcmp(str, "CR") || my_strcmp(str, "\\r"))  {
+	} else if (my_strcmp(str, "CR") || my_strcmp(str, "\\r")) {
 		return (13);
-	} else if (my_strcmp(str, "SO"))  {
+	} else if (my_strcmp(str, "SO")) {
 		return (14);
-	} else if (my_strcmp(str, "SI"))  {
+	} else if (my_strcmp(str, "SI")) {
 		return (15);
-	} else if (my_strcmp(str, "DLE"))  {
+	} else if (my_strcmp(str, "DLE")) {
 		return (16);
-	} else if (my_strcmp(str, "DC1"))  {
+	} else if (my_strcmp(str, "DC1")) {
 		return (17);
-	} else if (my_strcmp(str, "DC2"))  {
+	} else if (my_strcmp(str, "DC2")) {
 		return (18);
-	} else if (my_strcmp(str, "DC3"))  {
+	} else if (my_strcmp(str, "DC3")) {
 		return (19);
-	} else if (my_strcmp(str, "DC4"))  {
+	} else if (my_strcmp(str, "DC4")) {
 		return (20);
-	} else if (my_strcmp(str, "NAK"))  {
+	} else if (my_strcmp(str, "NAK")) {
 		return (21);
-	} else if (my_strcmp(str, "SYN"))  {
+	} else if (my_strcmp(str, "SYN")) {
 		return (22);
-	} else if (my_strcmp(str, "ETB"))  {
+	} else if (my_strcmp(str, "ETB")) {
 		return (23);
-	} else if (my_strcmp(str, "CAN"))  {
+	} else if (my_strcmp(str, "CAN")) {
 		return (24);
-	} else if (my_strcmp(str, "EM"))  {
+	} else if (my_strcmp(str, "EM")) {
 		return (25);
-	} else if (my_strcmp(str, "SUB"))  {
+	} else if (my_strcmp(str, "SUB")) {
 		return (26);
-	} else if (my_strcmp(str, "ESC"))  {
+	} else if (my_strcmp(str, "ESC")) {
 		return (27);
-	} else if (my_strcmp(str, "FS"))  {
+	} else if (my_strcmp(str, "FS")) {
 		return (28);
-	} else if (my_strcmp(str, "GS"))  {
+	} else if (my_strcmp(str, "GS")) {
 		return (29);
-	} else if (my_strcmp(str, "RS"))  {
+	} else if (my_strcmp(str, "RS")) {
 		return (30);
-	} else if (my_strcmp(str, "US"))  {
+	} else if (my_strcmp(str, "US")) {
 		return (31);
-	} else if (my_strcmp(str, "SPACE"))  {
+	} else if (my_strcmp(str, "SPACE")) {
 		return (32);
-	} else if (my_strcmp(str, "DEL"))  {
+	} else if (my_strcmp(str, "DEL")) {
 		return (127);
 	} else {
 		if (my_strlen(str) == 1) {
