@@ -10,6 +10,8 @@ set nolinebreak                     " for disabling auto newline
 set nowrap                          " for disabling auto newline
 set number                          " for displaying line numbers
 set fo-=t                           " preventing auto-insert newline at EOL
+" set termguicolors                 " uses terminal gui colors
+" colorscheme solarized             " color theme ~/.vim/colors
 """""""""""""""""""""""""""""""""""""""""
 
 
@@ -63,11 +65,10 @@ match ExtraWhitespace '\s\+$'
 """"""""80 KARAKTER+ RENKLENDIRME""""""""
 highlight OverLengthCharacters ctermbg=darkgrey guibg=darkgrey ctermfg=white guifg=white
 2match OverLengthCharacters '\%>80v.\+'
+" IKISI BIRDEN TEK REGEX
+" highlight ExtraCharacters ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+" match ExtraCharacters '\%>80v.\+\|\s\+$'
 """""""""""""""""""""""""""""""""""""""""
-
-		" IKISI BIRDEN TEK REGEX
-		" highlight ExtraCharacters ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-		" match ExtraCharacters '\%>80v.\+\|\s\+$'
 
 """""""""""""""""""42""""""""""""""""""""
 map <C-F12> :Stdheader<CR>
@@ -84,7 +85,6 @@ set listchars=eol:↓,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
 """""""""""""GORSEL EFEKTLER"""""""""""""
 set fillchars=vert:\│
 highlight VertSplit cterm=none gui=none
-" colorscheme nord
 """""""""""""""""""""""""""""""""""""""""
 
 """ Vim paketlerini yukler"""""""""""""""
