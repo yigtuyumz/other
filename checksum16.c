@@ -1,18 +1,21 @@
-#include "/root/utils.h"
-#include <stdio.h>
-
-void
-print_byte(__uint8_t byte, __uint8_t len)
-{
-	printf("Value: %04X decimal: %u\n", byte, byte);
-	for (int i = ((8 * len) - 1); i >= 0; i--) {
-		printf("%d", GETBIT(byte, i));
-		if (i % 8 == 0) {
-			printf(" ");
-		}
-	}
-	printf("\n");
-}
+/*
+ * #include "utils.h"
+ *
+ * void
+ * print_byte(__uint8_t byte, __uint8_t len)
+ * {
+ * 
+ * 	utils_putstr(STDOUT_FILENO, "Value: ");
+ * 	utils_putnbr(STDOUT_FILENO, (__uint8_t) byte);
+ * 	for (int i = ((8 * len) - 1); i >= 0; i--) {
+ * 		utils_putnbr(STDOUT_FILENO, GETBIT(byte, i));
+ * 		if (i % 8 == 0) {
+ * 			utils_putchar(STDOUT_FILENO, ' ');
+ * 		}
+ * 	}
+ * 	utils_putchar(STDOUT_FILENO, '\n');
+ * }
+ */
 
 __uint16_t
 checksum16(__uint16_t lst[], __uint8_t len)
@@ -56,12 +59,3 @@ validate_checksum16(__uint16_t lst[], __uint8_t len, __uint16_t checksum)
 	return (1);
 }
 
-
-int
-main(int argc, char const *argv[])
-{
-	__uint16_t data[] = {0x4500, 0x0073, 0x1234, 0x4000, 0x4011, 0xc0a8, 0x0001, 0xc0a8, 0x00c7};
-	printf("%04X\n", checksum16(data, 9));
-	printf("%04X\n", validate_checksum16(data, 9, checksum16(data, 9)));
-	return 0;
-}
