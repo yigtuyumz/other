@@ -4,9 +4,10 @@ else
 	CC = gcc
 endif
 
-LIBDIR = $(realpath /root)
+LIBDIR = ./lib
 LDFLAGS = -L$(LIBDIR) -lutils -Wl,-rpath=$(LIBDIR)
 CFLAGS = -std=c99
+OUTDIR = ./out
 
 RELEASE ?= no
 ifeq ($(RELEASE),yes)
@@ -19,14 +20,14 @@ endif
 a: s c
 
 clean:
-	rm -rf s c
+	rm -rf $(OUTDIR)
 
 r: clean a
 
 s:
-	$(CC) $(CFLAGS) server.c -o s $(LDFLAGS)
+	@mkdir -p $(OUTDIR)
+	$(CC) $(CFLAGS) server.c -o $(OUTDIR)/s $(LDFLAGS)
 
 c:
-	$(CC) $(CFLAGS) client.c -o c $(LDFLAGS)
-
-# DO NOT DELETE
+	@mkdir -p $(OUTDIR)
+	$(CC) $(CFLAGS) client.c -o $(OUTDIR)/c $(LDFLAGS)

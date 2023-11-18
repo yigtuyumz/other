@@ -1,4 +1,4 @@
-#include "/root/utils.h"
+#include "include/utils.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -80,7 +80,15 @@ argv[2] : Port of the socket\n\n");
 	struct sockaddr_in address;
 	struct in_addr ip_address;
 	ip_address.s_addr = ipstr_to_nbo(argv[1]);
+#ifdef __FreeBSD__
 	address.sin_len = sizeof(struct sockaddr_in);
+#else
+# ifdef __linux__
+	size_t socklen = sizeof(struct sockaddr_in);
+# else
+	// unsupported platform
+# endif
+#endif
 	address.sin_family = AF_INET;
 	uint16_t porty = (uint16_t) utils_atoi(argv[2]);
 	align_network_byte_order_port(&porty);
@@ -109,8 +117,18 @@ argv[2] : Port of the socket\n\n");
 
 
 	// accept CREATES A NEW SOCKET!
+#ifdef __FreeBSD__
 	int accpt = accept(sock, (struct sockaddr * restrict)&address,
 			(socklen_t *)&address.sin_len);
+#else
+# ifdef __linux__
+	int accpt = accept(sock, (struct sockaddr * restrict)&address,
+			(socklen_t *)&socklen);
+# else
+	// unsupported platform
+# endif
+#endif
+
 
 	if (accpt < 0) {
 		perror("Accept error!");
@@ -126,9 +144,19 @@ argv[2] : Port of the socket\n\n");
 
 	char recv_buffer[50];
 
+#ifdef __FreeBSD__
 	ssize_t recieve = recvfrom(accpt, (void *)recv_buffer, 50, MSG_WAITALL,
 			(struct sockaddr * restrict)&address,
 			(socklen_t * restrict)&address.sin_len);
+#else
+# ifdef __linux__
+	ssize_t recieve = recvfrom(accpt, (void *)recv_buffer, 50, MSG_WAITALL,
+			(struct sockaddr * restrict)&address,
+			(socklen_t * restrict)&socklen);
+# else
+	// unsupported platform
+# endif
+#endif
 	// recv flags
 	// MSG_OOB                 process out-of-band data
 	// MSG_PEEK                peek at incoming message

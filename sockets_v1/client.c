@@ -1,4 +1,4 @@
-#include "/root/utils.h"
+#include "include/utils.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -81,8 +81,10 @@ argv[3] : Message to be sent\n\n");
 	struct in_addr nm_ip;
 	nm_ip.s_addr = ipstr_to_nbo(argv[1]);
 
-
+#ifdef __FreeBSD__
 	nm.sin_len = sizeof(struct sockaddr_in);
+#endif
+
 	nm.sin_family = AF_INET;
 
 	uint16_t porty = (uint16_t) utils_atoi(argv[2]);
@@ -119,7 +121,7 @@ argv[3] : Message to be sent\n\n");
 	// #define MSG_DONTWAIT    0x00080 Do not block
 	// #define MSG_EOF         0x00100 Data completes transaction
 	// #define MSG_NOSIGNAL    0x20000 Do not generate SIGPIPE on EOF
-	ssize_t send = sendto(sock, (const void *) send_buffer, utils_strlen(send_buffer), MSG_EOF,
+	ssize_t send = sendto(sock, (const void *) send_buffer, utils_strlen(send_buffer), MSG_EOR,
 			(const struct sockaddr *)&nm, (socklen_t) sizeof(struct sockaddr_in));
 
 	if (send < 0) {
