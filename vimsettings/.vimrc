@@ -1,4 +1,5 @@
 """""""""""""GENEL AYARLAR"""""""""""""""
+source ~/.vim/my_functions.vim      " imports vimscript
 syntax on
 filetype plugin indent on
 set backspace=2

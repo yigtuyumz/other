@@ -40,14 +40,13 @@ endfunction
 
 
 " Sadece Insert modundayken whitespace karakterleri gostermek icin
-
-function! ShowHiddenChars()
-	set list
-endfunction
-
-function! HideHiddenChars()
-	set nolist
-endfunction
+" function! ShowHiddenChars()
+" 	set list
+" endfunction
+" 
+" function! HideHiddenChars()
+" 	set nolist
+" endfunction
 
 autocmd InsertEnter * call ShowHiddenChars()
 autocmd InsertLeave * call HideHiddenChars()
