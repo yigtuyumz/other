@@ -48,5 +48,5 @@ endfunction
 " 	set nolist
 " endfunction
 
-autocmd InsertEnter * call ShowHiddenChars()
-autocmd InsertLeave * call HideHiddenChars()
+" autocmd InsertEnter * call ShowHiddenChars()
+" autocmd InsertLeave * call HideHiddenChars()
