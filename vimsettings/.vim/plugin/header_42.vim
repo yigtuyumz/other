@@ -145,5 +145,5 @@ endfunction
 
 " Bind command and shortcut
 command! Stdheader call s:stdheader ()
-" map <F1> :Stdheader<CR>
+" map <F12> :Stdheader<CR>
 autocmd BufWritePre * call s:update ()

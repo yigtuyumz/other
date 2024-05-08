@@ -21,17 +21,19 @@ general() {
 		echo "!!!no_interface!!!"
 		return 1
 	fi
-	
+
 	local mode
 	local report
-	report=$(ip -s -h link show "${interface_name}" 2>/dev/null)
+	report=$(ip -s link show "${interface_name}" 2>/dev/null)
 
 	if [ "${2}" == "tx" ]; then
 		mode="6"
-		echo "${report}" | awk -v MODE=$mode 'NR==MODE {print $1}'
+		echo "${report}" | awk -v MODE=$mode 'NR==MODE {print $1}' |
+			numfmt --to iec --format "%8.2f" | xargs
 	elif [ "${2}" == "rx" ]; then
 		mode="4"
-		echo "${report}" | awk -v MODE=$mode 'NR==MODE {print $1}'
+		echo "${report}" | awk -v MODE=$mode 'NR==MODE {print $1}' |
+			numfmt --to iec --format "%8.2f" | xargs
 	else
 		echo "!!!no_mode!!!"
 		return 1
