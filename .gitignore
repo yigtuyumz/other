@@ -1,3 +1,4 @@
 .vscode/
 *.out
 sockets_v1/out
+*.c~
