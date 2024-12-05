@@ -2,3 +2,7 @@
 *.out
 sockets_v1/out
 *.c~
+node_modules/
+package-lock.json
+package.json
+
